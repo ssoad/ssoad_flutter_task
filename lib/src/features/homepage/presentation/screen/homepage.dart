@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../component/repository_item_card.dart';
 import '../cubit/home_cubit.dart';
-
 
 class Homepage extends StatelessWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -12,19 +12,21 @@ class Homepage extends StatelessWidget {
     return BlocBuilder<HomeCubit, HomeState>(builder: (context, state) {
       return Scaffold(
         appBar: AppBar(
-          title: const Text('Homepage'),
+          title: const Text('Top Flutter Repositories'),
         ),
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-
-            ],
-          ),
+          child: !state.isLoading!
+              ? ListView.builder(
+                  itemCount: state.items!.length,
+                  itemBuilder: (context, index) {
+                    return RepositoryItemCard(
+                      item: state.items![index],
+                    );
+                  },
+                )
+              : const CircularProgressIndicator(),
         ),
-
       );
     });
   }
 }
-

@@ -1,5 +1,6 @@
 import 'package:bs34_flutter_task/src/features/details/presentation/cubit/home_cubit.dart';
 import 'package:bs34_flutter_task/src/features/details/presentation/screen/homepage.dart';
+import 'package:bs34_flutter_task/src/utils/di.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
@@ -14,7 +15,7 @@ class Routes {
     GetPage(
       name: home,
       page: () => BlocProvider(
-        create: (_) => HomeCubit(),
+        create: (_) => HomeCubit(homeRepository)..onInit(),
         child: const Homepage(),
       ),
     ),
