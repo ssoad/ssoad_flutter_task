@@ -54,7 +54,7 @@ class RepositoryItemCard extends StatelessWidget {
                               EdgeInsets.only(top: 10, right: 10, bottom: 10),
                           child: Center(
                             child: Text(
-                              item.description!,
+                              item.description ?? "",
                               style: TextStyle(fontSize: 15),
                               textAlign: TextAlign.justify,
                             ),
