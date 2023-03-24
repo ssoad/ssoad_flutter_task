@@ -1,11 +1,13 @@
-import 'package:bs34_flutter_task/src/features/details/presentation/cubit/home_cubit.dart';
-import 'package:bs34_flutter_task/src/features/details/presentation/screen/homepage.dart';
 import 'package:bs34_flutter_task/src/utils/di.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 import '../features/homepage/presentation/cubit/home_cubit.dart';
 import '../features/homepage/presentation/screen/homepage.dart';
+import '../features/repository_details/presentation/cubit/repository_details_cubit.dart';
+import '../features/repository_details/presentation/screen/repository_details.dart';
 
 class Routes {
   static const String home = "/home";
@@ -22,7 +24,7 @@ class Routes {
     GetPage(
       name: details,
       page: () => BlocProvider(
-        create: (_) => RepositoryDetailsCubit(),
+        create: (_) => RepositoryDetailsCubit()..onInit(Get.arguments),
         child: const RepositoryDetails(),
       ),
     ),

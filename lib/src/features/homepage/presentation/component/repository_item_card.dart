@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../core/model/repository_list_response_model.dart';
+import '../../../../utils/routes.dart';
 
 class RepositoryItemCard extends StatelessWidget {
   final Item item;
@@ -13,7 +16,9 @@ class RepositoryItemCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: MaterialButton(
-        onPressed: () {},
+        onPressed: () {
+          Get.toNamed(Routes.details, arguments: item);
+        },
         clipBehavior: Clip.hardEdge,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
