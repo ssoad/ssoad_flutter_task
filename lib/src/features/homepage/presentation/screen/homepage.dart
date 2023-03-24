@@ -8,23 +8,33 @@ import '../cubit/home_cubit.dart';
 class Homepage extends StatelessWidget {
   Homepage({Key? key}) : super(key: key);
 
-  // final ScrollController scrollController = ScrollController();
-
-  // _ScrollPosition() async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   prefs.setDouble('scrollPosition', scrollController.position.pixels);
-  // }
-
   @override
   Widget build(BuildContext context) {
-    // scrollController.addListener(() {
-    //   _ScrollPosition();
-    // });
-    // scrollController.jumpTo(scrollController.position.maxScrollExtent);
     return BlocBuilder<HomeCubit, HomeState>(builder: (context, state) {
       return Scaffold(
         appBar: AppBar(
           title: const Text('Top Flutter Repositories'),
+          actions: [
+            // Sort by stars
+            PopupMenuButton(
+              onSelected: (value) {
+                context.read<HomeCubit>().sortRepositories(value);
+              },
+              itemBuilder: (context) => [
+                PopupMenuItem(
+                  enabled:
+                      !state.sortBy!.contains('last_updated') ? true : false,
+                  value: 'last_updated',
+                  child: Text('Sort by Last Updated Date-Time'),
+                ),
+                PopupMenuItem(
+                  enabled: !state.sortBy!.contains('stars') ? true : false,
+                  value: 'stars',
+                  child: Text('Sort by Star Count'),
+                ),
+              ],
+            ),
+          ],
         ),
         body: Center(
           child: !state.isLoading!

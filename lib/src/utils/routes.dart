@@ -15,7 +15,7 @@ class Routes {
     GetPage(
       name: home,
       page: () => BlocProvider(
-        create: (_) => HomeCubit(homeRepository)..onInit(),
+        create: (_) => HomeCubit(homeRepository, sharedPreferences)..onInit(),
         child: Homepage(),
       ),
     ),
