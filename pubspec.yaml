@@ -46,6 +46,7 @@ dependencies:
   hive: ^2.2.3
   cached_network_image: ^3.2.3
   intl: ^0.18.0
+  connectivity_plus: ^3.0.3
 
 dev_dependencies:
   flutter_test:

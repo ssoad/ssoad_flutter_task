@@ -24,7 +24,7 @@ class HomeCubit extends BaseCubit<HomeState> {
         isFetching: false));
     var result = await _homeRepository.fetchRepositories(state.page!);
     emit(state.copyWith(isLoading: false, items: result));
-    sortRepositories(state.sortBy!);
+    //sortRepositories(state.sortBy!);
   }
 
   Future<void> fetchRepositories() async {
@@ -35,7 +35,7 @@ class HomeCubit extends BaseCubit<HomeState> {
     state.items!.addAll(result);
     emit(state.copyWith(
         isFetching: false, items: state.items!, page: state.page! + 1));
-    sortRepositories(state.sortBy!);
+    // sortRepositories(state.sortBy!);
   }
 
   void sortRepositories(String value) {
@@ -43,13 +43,17 @@ class HomeCubit extends BaseCubit<HomeState> {
     if (value == 'stars') {
       _sharedPreferences.setString('sortBy', 'stars');
       print('Sorting by stars');
-      state.items!
-          .sort((a, b) => b.stargazersCount!.compareTo(a.stargazersCount!));
+      // items.sort((a, b) => b.stargazersCount!.compareTo(a.stargazersCount!));
     } else {
       _sharedPreferences.setString('sortBy', 'last_updated');
       print('Sorting by last updated');
-      state.items!.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
+      // items.sort((a, b) => b.updatedAt!.compareTo(a.updatedAt!));
     }
-    emit(state.copyWith(items: state.items!, isLoading: false, sortBy: value));
+    onInit();
+    // emit(state.copyWith(items: [], isLoading: false, sortBy: value));
+    emit(state.copyWith(isLoading: false, sortBy: value));
+    // state.items!.forEach((element) {
+    //   print(element.name);
+    // });
   }
 }

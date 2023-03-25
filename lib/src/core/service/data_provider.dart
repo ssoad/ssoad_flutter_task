@@ -1,4 +1,5 @@
 import 'package:bs34_flutter_task/src/core/service/api_service/api_service.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 
 import '../model/repository_list_response_model.dart';
 import 'db_helper.dart';
@@ -8,12 +9,16 @@ class DataProvider {
   static final DatabaseHelper _dbHelper = DatabaseHelper();
 
   static Future<List<Item>> getRepositories(
-      String query, int page, int perpage) async {
+      String query, int page, int perpage, String sortBy) async {
     String jsonResult = "";
+    final connectivityResult = await (Connectivity().checkConnectivity());
     String url =
-        '${_baseUrl}search/repositories?q=$query&page=$page&per_page=$perpage';
-    jsonResult = await _dbHelper.getRepoList(url);
-    if (jsonResult.isEmpty) {
+        '${_baseUrl}search/repositories?q=$query&page=$page&per_page=$perpage&sort=$sortBy&order=desc';
+    jsonResult = await _dbHelper.getRepoList(
+        url, connectivityResult == ConnectivityResult.none);
+    if (jsonResult.isEmpty &&
+        (connectivityResult == ConnectivityResult.mobile ||
+            connectivityResult == ConnectivityResult.wifi)) {
       try {
         var data = await APIService.getRepositories(url);
         jsonResult = data;
@@ -22,7 +27,8 @@ class DataProvider {
         print(e);
       }
     }
-    var results = RepositoryListResponse.fromRawJson(jsonResult).items ?? [];
-    return results;
+    return jsonResult.isEmpty
+        ? []
+        : RepositoryListResponse.fromRawJson(jsonResult).items ?? [];
   }
 }

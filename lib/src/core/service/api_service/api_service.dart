@@ -8,10 +8,7 @@ class APIService {
 
   static Future<String> getRepositories(String url) async {
     String jsonResult = "";
-    var data = await http.get(Uri.parse(url), headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    });
+    var data = await http.get(Uri.parse(url));
     jsonResult = data.body;
     return jsonResult;
   }

@@ -20,17 +20,18 @@ class Homepage extends StatelessWidget {
               onSelected: (value) {
                 context.read<HomeCubit>().sortRepositories(value);
               },
+              icon: const Icon(Icons.sort),
               itemBuilder: (context) => [
                 PopupMenuItem(
                   enabled:
                       !state.sortBy!.contains('last_updated') ? true : false,
                   value: 'last_updated',
-                  child: Text('Sort by Last Updated Date-Time'),
+                  child: const Text('Sort by Last Updated Date-Time'),
                 ),
                 PopupMenuItem(
                   enabled: !state.sortBy!.contains('stars') ? true : false,
                   value: 'stars',
-                  child: Text('Sort by Star Count'),
+                  child: const Text('Sort by Star Count'),
                 ),
               ],
             ),
@@ -42,34 +43,42 @@ class Homepage extends StatelessWidget {
                   children: [
                     Expanded(
                       child: NotificationListener<ScrollNotification>(
-                        onNotification: (ScrollNotification scrollInfo) {
-                          print(scrollInfo.metrics.pixels);
-                          if (!state.isLoading! &&
-                              scrollInfo.metrics.pixels ==
-                                  scrollInfo.metrics.maxScrollExtent) {
-                            if (state.isFetching == false ?? false) {
-                              print('fetching');
-                              context.read<HomeCubit>().fetchRepositories();
+                          onNotification: (ScrollNotification scrollInfo) {
+                            print(scrollInfo.metrics.pixels);
+                            if (!state.isLoading! &&
+                                scrollInfo.metrics.pixels ==
+                                    scrollInfo.metrics.maxScrollExtent) {
+                              if (state.isFetching == false) {
+                                print('fetching');
+                                context.read<HomeCubit>().fetchRepositories();
+                              }
                             }
-
-                            // state.scrollController!.animateTo(
-                            //   state.scrollController!.position.pixels + 100,
-                            //   duration: const Duration(milliseconds: 300),
-                            //   curve: Curves.easeOut,
-                            // );
-                          }
-                          return true;
-                        },
-                        child: ListView.builder(
-                          controller: state.scrollController,
-                          itemCount: state.items!.length,
-                          itemBuilder: (context, index) {
-                            return RepositoryItemCard(
-                              item: state.items![index],
-                            );
+                            return true;
                           },
-                        ),
-                      ),
+                          child: state.items!.isNotEmpty
+                              ? ListView.builder(
+                                  controller: state.scrollController,
+                                  addAutomaticKeepAlives: false,
+                                  itemCount: state.items!.length,
+                                  itemBuilder: (context, index) {
+                                    return RepositoryItemCard(
+                                      item: state.items![index],
+                                    );
+                                  },
+                                )
+                              : const Center(
+                                  child: Padding(
+                                    padding: EdgeInsets.all(15.0),
+                                    child: Text(
+                                      'No Repositories Found\n\n Please Check Your Internet Connection and Try Again',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.grey),
+                                    ),
+                                  ),
+                                )),
                     ),
                     if (state.isFetching!)
                       const Center(

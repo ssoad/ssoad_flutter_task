@@ -36,7 +36,8 @@ class DatabaseHelper {
         .put(url, {"last_updated": DateTime.now(), "json": repoListJson});
   }
 
-  Future<String> getRepoList(String url) async {
+  Future<String> getRepoList(String url, bool isOffline) async {
+    print("Device Offline: $isOffline");
     final appDocumentDirectory = await getApplicationDocumentsDirectory();
     collection = await BoxCollection.open(
       'top_flutter_repository', // Name of your database
@@ -46,7 +47,7 @@ class DatabaseHelper {
     );
     final repo_list_box = await collection.openBox<Map>('repo_list');
     final repo_list = await repo_list_box.get(url);
-    if (repo_list?['last_updated'] != null) {
+    if (repo_list?['last_updated'] != null && !isOffline) {
       final last_updated = repo_list?['last_updated'];
       final now = DateTime.now();
       final difference = now.difference(last_updated).inMinutes;
