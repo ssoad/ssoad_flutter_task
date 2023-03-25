@@ -5,7 +5,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> Init() async {
-  Get.putAsync<SharedPreferences>(() => SharedPreferences.getInstance());
+  await Get.putAsync<SharedPreferences>(() => SharedPreferences.getInstance());
   Get.put<HomeRepository>(HomeRepository());
   await DatabaseHelper().db_init();
 }

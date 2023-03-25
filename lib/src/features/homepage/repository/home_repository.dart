@@ -1,5 +1,6 @@
 import 'package:bs34_flutter_task/src/core/service/api_service/api_service.dart';
 import 'package:bs34_flutter_task/src/core/service/data_provider.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -11,10 +12,14 @@ class HomeRepository {
   Future<List<Item>> fetchRepositories(int page) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String sortBy = prefs.getString('sortBy') ?? '';
-    print("Fetching Repositories Page: $page");
+    if (kDebugMode) {
+      print("Fetching Repositories Page: $page");
+    }
     var result =
         await DataProvider.getRepositories('flutter', page, 10, sortBy);
-    print(result);
+    if (kDebugMode) {
+      print(result);
+    }
     return result;
   }
 }

@@ -7,11 +7,13 @@ import 'db_helper.dart';
 class DataProvider {
   static const String _baseUrl = 'https://api.github.com/';
   static final DatabaseHelper _dbHelper = DatabaseHelper();
+  static final Connectivity _connectivity = Connectivity();
+  static final APIService _apiService = APIService();
 
   static Future<List<Item>> getRepositories(
       String query, int page, int perpage, String sortBy) async {
     String jsonResult = "";
-    final connectivityResult = await (Connectivity().checkConnectivity());
+    final connectivityResult = await (_connectivity.checkConnectivity());
     String url =
         '${_baseUrl}search/repositories?q=$query&page=$page&per_page=$perpage&sort=$sortBy&order=desc';
     jsonResult = await _dbHelper.getRepoList(
@@ -20,7 +22,7 @@ class DataProvider {
         (connectivityResult == ConnectivityResult.mobile ||
             connectivityResult == ConnectivityResult.wifi)) {
       try {
-        var data = await APIService.getRepositories(url);
+        var data = await _apiService.getRepositories(url);
         jsonResult = data;
         _dbHelper.insertRepoList(url, jsonResult);
       } catch (e) {

@@ -57,6 +57,7 @@ class Homepage extends StatelessWidget {
                           },
                           child: state.items!.isNotEmpty
                               ? ListView.builder(
+                                  shrinkWrap: true,
                                   controller: state.scrollController,
                                   addAutomaticKeepAlives: false,
                                   itemCount: state.items!.length,
