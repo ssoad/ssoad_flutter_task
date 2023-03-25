@@ -1,7 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../../core/constants/text_styles.dart';
 import '../component/repository_item_card.dart';
 import '../cubit/home_cubit.dart';
 
@@ -44,12 +46,16 @@ class Homepage extends StatelessWidget {
                     Expanded(
                       child: NotificationListener<ScrollNotification>(
                           onNotification: (ScrollNotification scrollInfo) {
-                            print(scrollInfo.metrics.pixels);
+                            if (kDebugMode) {
+                              print(scrollInfo.metrics.pixels);
+                            }
                             if (!state.isLoading! &&
                                 scrollInfo.metrics.pixels ==
                                     scrollInfo.metrics.maxScrollExtent) {
                               if (state.isFetching == false) {
-                                print('fetching');
+                                if (kDebugMode) {
+                                  print('fetching');
+                                }
                                 context.read<HomeCubit>().fetchRepositories();
                               }
                             }
@@ -67,16 +73,13 @@ class Homepage extends StatelessWidget {
                                     );
                                   },
                                 )
-                              : const Center(
+                              : Center(
                                   child: Padding(
-                                    padding: EdgeInsets.all(15.0),
+                                    padding: const EdgeInsets.all(15.0),
                                     child: Text(
                                       'No Repositories Found\n\n Please Check Your Internet Connection and Try Again',
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w600,
-                                          color: Colors.grey),
+                                      style: regular20,
                                     ),
                                   ),
                                 )),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../core/constants/text_styles.dart';
 import '../../../../core/model/repository_list_response_model.dart';
 import '../../../../utils/routes.dart';
 
@@ -46,9 +47,7 @@ class RepositoryItemCard extends StatelessWidget {
                         child: Text(
                           item.fullName!,
                           maxLines: 2,
-                          style: const TextStyle(
-                              fontSize: 20, color: Colors.black87),
-                          overflow: TextOverflow.ellipsis,
+                          style: repositoryName,
                         ),
                       ),
                     ],
@@ -70,22 +69,22 @@ class RepositoryItemCard extends StatelessWidget {
                   flex: 1,
                   child: Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.star,
                         color: Colors.grey,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
-                      Text('Stars: ${item.stargazersCount!}'),
-                      SizedBox(
+                      Text('Stars: ${item.stargazersCount!}', style: regular15),
+                      const SizedBox(
                         width: 10,
                       ),
-                      Icon(Icons.fork_right_outlined, color: Colors.grey),
-                      SizedBox(
+                      const Icon(Icons.fork_right_outlined, color: Colors.grey),
+                      const SizedBox(
                         width: 10,
                       ),
-                      Text('Fork: ${item.forksCount!}'),
+                      Text('Fork: ${item.forksCount!}', style: regular15),
                     ],
                   ),
                 ),

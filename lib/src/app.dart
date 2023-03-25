@@ -1,8 +1,8 @@
-import 'package:bs34_flutter_task/src/features/homepage/presentation/screen/homepage.dart';
-import 'package:bs34_flutter_task/src/utils/routes.dart';
+import 'package:bs23_flutter_task/src/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
+import 'core/constants/app_color.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -11,11 +11,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      initialRoute: Routes.home,
-      getPages: Routes.pages
-    );
+        theme: ThemeData(
+          primaryColor: AppColor.primaryColor,
+          secondaryHeaderColor: AppColor.secondaryColor,
+          primarySwatch: AppColor.primarySwatch,
+        ),
+        initialRoute: Routes.home,
+        getPages: Routes.pages);
   }
 }

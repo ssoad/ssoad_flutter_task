@@ -1,8 +1,6 @@
-import 'package:bs34_flutter_task/src/utils/di.dart';
+import 'package:bs23_flutter_task/src/utils/di.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/routes/get_route.dart';
 
 import '../features/homepage/presentation/cubit/home_cubit.dart';
 import '../features/homepage/presentation/screen/homepage.dart';

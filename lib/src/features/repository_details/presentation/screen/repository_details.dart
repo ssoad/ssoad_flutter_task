@@ -1,8 +1,6 @@
-import 'package:bs34_flutter_task/src/core/model/repository_list_response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../utils/dateUtils.dart';
 import '../component/owner_info_card.dart';
 import '../component/repository_info.dart';
 import '../cubit/repository_details_cubit.dart';

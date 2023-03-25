@@ -1,8 +1,4 @@
-import 'package:bloc/bloc.dart';
-import 'package:bs34_flutter_task/src/core/model/repository_list_response_model.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
-import 'package:meta/meta.dart';
+import 'package:bs23_flutter_task/src/core/model/repository_list_response_model.dart';
 
 import '../../../../core/state_management/base_cubit.dart';
 part 'repository_details_state.dart';

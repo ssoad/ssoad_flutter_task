@@ -1,5 +1,5 @@
-import 'package:bs34_flutter_task/src/core/service/api_service/api_service.dart';
-import 'package:bs34_flutter_task/src/core/service/data_provider.dart';
+import 'package:bs23_flutter_task/src/core/service/api_service/api_service.dart';
+import 'package:bs23_flutter_task/src/core/service/data_provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';

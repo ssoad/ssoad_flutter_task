@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/constants/text_styles.dart';
 import '../../../../core/model/repository_list_response_model.dart';
 import '../../../../utils/dateUtils.dart';
 
@@ -24,7 +25,7 @@ class RepositoryInfo extends StatelessWidget {
             ),
             Text(
               item!.name!,
-              style: const TextStyle(fontSize: 30),
+              style: bold30,
               overflow: TextOverflow.ellipsis,
             ),
             const SizedBox(
@@ -48,7 +49,7 @@ class RepositoryInfo extends StatelessWidget {
         Title("Description"),
         Text(
           item?.description ?? "",
-          style: const TextStyle(fontSize: 20, color: Colors.black87),
+          style: regular20,
           textAlign: TextAlign.justify,
         ),
         LanguageCard(item!.language ?? "No Language"),
@@ -76,7 +77,7 @@ class RepositoryInfo extends StatelessWidget {
         color: Colors.blue.shade300,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Text(title, style: const TextStyle(color: Colors.white)),
+          child: Text(title, style: regular21white),
         ));
   }
 
@@ -92,7 +93,7 @@ class RepositoryInfo extends StatelessWidget {
             color: const Color(0xFF5CC3F0),
             child: Padding(
               padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
-              child: Text(title, style: const TextStyle(color: Colors.white)),
+              child: Text(title, style: regular21white),
             )),
       ],
     );
@@ -102,8 +103,7 @@ class RepositoryInfo extends StatelessWidget {
   Widget Title(String title) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
-      child: Text(title.toUpperCase(),
-          style: TextStyle(fontSize: 16, color: Colors.grey.shade600)),
+      child: Text(title.toUpperCase(), style: sectionHeading),
     );
   }
 }

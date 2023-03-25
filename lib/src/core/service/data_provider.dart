@@ -1,4 +1,4 @@
-import 'package:bs34_flutter_task/src/core/service/api_service/api_service.dart';
+import 'package:bs23_flutter_task/src/core/service/api_service/api_service.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 
 import '../model/repository_list_response_model.dart';

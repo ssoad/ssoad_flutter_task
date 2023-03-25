@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/constants/text_styles.dart';
 import '../../../../core/model/repository_list_response_model.dart';
 
 class OwnerInfo extends StatelessWidget {
@@ -43,9 +44,7 @@ class OwnerInfo extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          Text(item?.owner?.login!.toUpperCase() ?? "",
-              style: const TextStyle(
-                  fontSize: 20, color: const Color(0xff3C4043))),
+          Text(item?.owner?.login!.toUpperCase() ?? "", style: regular20),
         ],
       ),
     );

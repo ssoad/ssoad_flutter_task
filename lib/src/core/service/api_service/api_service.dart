@@ -1,4 +1,4 @@
-import 'package:bs34_flutter_task/src/core/service/db_helper.dart';
+import 'package:bs23_flutter_task/src/core/service/db_helper.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
