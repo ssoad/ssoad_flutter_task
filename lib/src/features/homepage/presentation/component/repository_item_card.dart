@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../core/model/repository_list_response_model.dart';
 import '../../../../utils/routes.dart';
@@ -14,7 +13,7 @@ class RepositoryItemCard extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.fromLTRB(12, 5, 12, 5),
       child: MaterialButton(
         onPressed: () {
           Get.toNamed(Routes.details, arguments: item);
@@ -24,8 +23,9 @@ class RepositoryItemCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
         color: Colors.white,
-        child: SizedBox(
-          height: height * 0.2,
+        child: Container(
+          padding: const EdgeInsets.all(2),
+          height: height * 0.14,
           width: width * 0.9,
           child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -42,30 +42,34 @@ class RepositoryItemCard extends StatelessWidget {
                       const SizedBox(
                         width: 10,
                       ),
-                      Text(
-                        item.name!,
-                        style: const TextStyle(fontSize: 20),
-                        overflow: TextOverflow.ellipsis,
+                      Expanded(
+                        child: Text(
+                          item.fullName!,
+                          maxLines: 2,
+                          style: const TextStyle(
+                              fontSize: 20, color: Colors.black87),
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
                     ],
                   ),
                 ),
-                Expanded(
-                    flex: 3,
-                    child: Padding(
-                      padding: EdgeInsets.only(top: 10, right: 10, bottom: 10),
-                      child: Center(
-                        child: Text(
-                          item.description ?? "",
-                          style: TextStyle(fontSize: 15),
-                          textAlign: TextAlign.justify,
-                        ),
-                      ),
-                    )),
+                // Expanded(
+                //     flex: 3,
+                //     child: Padding(
+                //       padding: EdgeInsets.only(top: 10, right: 10, bottom: 10),
+                //       child: Center(
+                //         child: Text(
+                //           item.description ?? "",
+                //           style: TextStyle(fontSize: 15),
+                //           textAlign: TextAlign.justify,
+                //         ),
+                //       ),
+                //     )),
                 Expanded(
                   flex: 1,
                   child: Row(
-                    children: const [
+                    children: [
                       Icon(
                         Icons.star,
                         color: Colors.grey,
@@ -73,7 +77,7 @@ class RepositoryItemCard extends StatelessWidget {
                       SizedBox(
                         width: 10,
                       ),
-                      Text('Stars'),
+                      Text('Stars: ${item.stargazersCount!}'),
                       SizedBox(
                         width: 10,
                       ),
@@ -81,7 +85,7 @@ class RepositoryItemCard extends StatelessWidget {
                       SizedBox(
                         width: 10,
                       ),
-                      Text('Fork'),
+                      Text('Fork: ${item.forksCount!}'),
                     ],
                   ),
                 ),
