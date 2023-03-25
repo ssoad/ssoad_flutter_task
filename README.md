@@ -1,5 +1,15 @@
-# bs34_flutter_task
+# Flutter Gtihub Top Repository
 
+
+## 🔥Usage
+
+Make sure you have Flutter installed on your local machine. For more instructions on how to install flutter, look [here](https://flutter.io/docs/get-started/install).
+```
+git clone https://github.com/ssoad/ssoad_flutter_task.git
+cd ssoad_flutter_task
+flutter pub get
+flutter run
+```
 A new Flutter project.
 
 ## Getting Started
